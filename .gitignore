@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pt
+*.npz
+*.npy
+outputs/
+.venv/
+venv/
+*.log
+.DS_Store
+Thumbs.db
+node_modules/

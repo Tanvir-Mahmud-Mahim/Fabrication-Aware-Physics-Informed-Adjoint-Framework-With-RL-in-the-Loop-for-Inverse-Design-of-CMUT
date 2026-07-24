@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the software and the accompanying papers."
+title: "PARL-ID: Fabrication-Aware Physics-Informed Adjoint Framework With Reinforcement Learning in the Loop for Inverse Design of CMUT and Photonic Sensors"
+authors:
+  - family-names: Mahim
+    given-names: Tanvir M.
+    orcid: "https://orcid.org/0000-0002-4550-3248"
+    affiliation: "BRAC University"
+  - family-names: Rahman
+    given-names: M. Mosaddequr
+    affiliation: "BRAC University"
+  - family-names: Rahim
+    given-names: A.H.M.A.
+    affiliation: "BRAC University"
+license: Apache-2.0
+repository-code: "https://github.com/Tanvir-Mahmud-Mahim/Fabrication-Aware-Physics-Informed-Adjoint-Framework-With-RL-in-the-Loop-for-Inverse-Design-of-CMUT"
+keywords:
+  - inverse design
+  - CMUT
+  - physics-informed neural networks
+  - adjoint optimization
+  - reinforcement learning
+  - CVaR
+  - fabrication-aware design
+references:
+  - type: article
+    title: "Hierarchical Inverse Design Framework for Unit-Cell CMUTs With Attentive Gated Recurrent and Fully Connected Dense Layers"
+    authors:
+      - family-names: Mahim
+        given-names: Tanvir M.
+      - family-names: Rahman
+        given-names: M. Mosaddequr
+      - family-names: Rahim
+        given-names: A.H.M.A.
+    journal: "IEEE Sensors Journal"
+    volume: 25
+    issue: 13
+    start: 26104
+    end: 26116
+    year: 2025
+    doi: "10.1109/JSEN.2025.3569424"
+  - type: dataset
+    title: "Open FEM Benchmark Database for CMUT Inverse Design"
+    doi: "10.5281/zenodo.21290617"
