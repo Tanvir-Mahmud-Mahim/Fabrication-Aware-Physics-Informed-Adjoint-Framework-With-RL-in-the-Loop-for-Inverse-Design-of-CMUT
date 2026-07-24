@@ -64,20 +64,6 @@ python experiments/run_photonic_pinn.py
 python tests/test_smoke.py
 ```
 
-# ===================Note===================
-# 1. Train the PINN (fills the physics-ablation R² in Sec. VI-A)
-python experiments/run_cmut_pinn.py --csv experiments/augmented_reshaped_dataset.csv
-#    → writes outputs/cmut_pinn.pt
-
-# 2. Adjoint design through the trained PINN
-python experiments/run_adjoint_design.py --target-freq 4.3
-#    → writes outputs/adjoint_design.pt   (run_rl_fab_loop needs BOTH files)
-
-# 3. The RL fabrication loop (fills the GCN-SAC/PPO numbers in Sec. VI-D)
-python experiments/run_rl_fab_loop.py                # GCN-SAC + PER + CVaR
-python experiments/run_rl_fab_loop.py --agent ppo    # PPO baseline for the ablation
-# ===================Note===================
-
 
 ## Regenerating the paper figures (no PyTorch required)
 
