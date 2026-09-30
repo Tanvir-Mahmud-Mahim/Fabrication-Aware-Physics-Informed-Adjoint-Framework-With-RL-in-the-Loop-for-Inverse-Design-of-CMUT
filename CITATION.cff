@@ -39,6 +39,3 @@ references:
     end: 26116
     year: 2025
     doi: "10.1109/JSEN.2025.3569424"
-  - type: dataset
-    title: "Open FEM Benchmark Database for CMUT Inverse Design"
-    doi: "10.5281/zenodo.21290617"
