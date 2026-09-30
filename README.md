@@ -110,9 +110,10 @@ Fabrication-Aware-Physics-Informed-Adjoint-Framework-With-RL-in-the-Loop-for-Inv
 
 **The database is not stored in this repository.** Download it from Zenodo
 (see [Way B](#way-b-redraw-the-result-figures-from-the-database)).
-Scripts write results to `outputs/` (PyTorch stages) and to
-`experiments/make_figures/` (small `.npy`/`.npz` state files); both are
-ignored by git.
+Scripts write results to `outputs/` (PyTorch stages; the figure scripts
+write their SVG files to `outputs/figures/`) and to
+`experiments/make_figures/` (small `.npy`/`.npz` state files); all of these
+are ignored by git. No script writes outside the repository.
 
 ---
 
@@ -128,9 +129,9 @@ source .venv/bin/activate       # Linux / macOS
 pip install -r requirements.txt
 ```
 
-`requirements.txt` installs `torch` (2.0 or newer), `numpy`, `scipy`,
-`pandas`, `matplotlib`, and `gymnasium` (the standard interface for RL
-environments). PyTorch is only needed for the PINN/adjoint/RL stages and the
+`requirements.txt` installs `torch` (2.3 or newer; 2.4.1 or newer on
+Windows), `numpy`, `scipy`, `pandas`, `matplotlib`, and `gymnasium` (the
+standard interface for RL environments). PyTorch is only needed for the PINN/adjoint/RL stages and the
 tests; the figure scripts need only `numpy`, `scipy`, `pandas`, and
 `matplotlib`. If you want a smaller download without GPU support, pick the
 CPU build on the PyTorch website before running the line above.
@@ -143,6 +144,32 @@ Optional extras (not needed by any script listed below):
   to the bundled PPO; no code in this repository imports it.
 - `pytest`: only if you prefer `python -m pytest tests/ -q` to the plain
   command in Way A.
+
+**Why PyTorch 2.3.** The code itself runs with NumPy 1.24 and with NumPy 2
+(it uses no function that exists in only one of them), and pip may install
+NumPy 2. PyTorch releases before 2.3 were built for NumPy 1 only: with
+NumPy 2, `torch.from_numpy` stops with "Numpy is not available" (checked
+here with PyTorch 2.2.2 and NumPy 2.0.0). On Windows this was fixed only in
+PyTorch 2.4.1. The other minimums are unchanged. SciPy releases before
+1.13 declare a NumPy limit below 2, so pip never pairs them with NumPy 2,
+and Gymnasium 0.29.0 ran the tests here with NumPy 2.0.0. One caution:
+pandas 2.0.0 to 2.1.1 and Matplotlib 3.7.0 to 3.7.2 were built for NumPy 1
+but do not say so in their package data, so pip can install them next to
+NumPy 2, and then they fail on import (checked here: pandas 2.0.0 with
+NumPy 2.0.0 stops with "numpy.dtype size changed", and Matplotlib 3.7.0
+with NumPy 2.0.0 cannot import `matplotlib.pyplot`). A fresh
+`pip install -r requirements.txt` installs current versions and is not
+affected; if you pin one of those older releases, also pin `numpy<2`.
+
+**Checked with the minimum versions** (30 September 2026, Python 3.11,
+CPU): with torch 2.3.0, numpy 1.24.0, scipy 1.10.0, pandas 2.0.0,
+matplotlib 3.7.0 and gymnasium 0.29.0, and again with torch 2.3.0,
+numpy 2.0.0, scipy 1.13.0, pandas 2.2.2, matplotlib 3.8.4 and
+gymnasium 0.29.0, the smoke tests passed, the three PyTorch stages ran with
+short settings (`--epochs 5`, `--iters 5`, `--rl-iters 1`), and the figure
+scripts ran on a stand-in database file (the real one could not be
+downloaded here). The saved `.npz` state files of the two set-ups agreed to
+within 2e-13.
 
 The scripts use a CUDA GPU automatically when PyTorch finds one (the RL loop
 always runs on the CPU). Everything also runs on a CPU.
@@ -170,16 +197,7 @@ No PyTorch is needed.
 1. Download `cmut_inverse_design_benchmark.csv` from
    https://doi.org/10.5281/zenodo.21290617 and save it as
    `experiments/augmented_reshaped_dataset.csv`.
-2. Create a folder named `latex` **next to** the repository folder (one level
-   above it). The scripts write their SVG files there
-   (`OUT` in `experiments/make_figures/common.py`) and stop with
-   `FileNotFoundError` if it is missing. From the repository folder:
-
-   ```
-   mkdir ../latex
-   ```
-
-3. Run the scripts in this order (later ones read files written by earlier
+2. Run the scripts in this order (later ones read files written by earlier
    ones):
 
    ```
@@ -247,8 +265,9 @@ python experiments/run_rl_fab_loop.py --rl-iters 20       # training length: PPO
 | `python extensions_study.py` | Warm-starting from the 4.3 MHz design at 4.0/4.5/5.0 MHz; peak versus band-average objective; ranking quality of the interpolated objective (5-fold) | database, `state_c1.npz` | `extensions_state.npz`; results printed |
 | `python fig_ablation.py` | Bar charts of the ablation results (values are typed into the script) | nothing | `Fig_ablation.svg` |
 
-SVG files go to the `latex` folder next to the repository (Way B, step 2);
-the `.npy`/`.npz` files stay in `experiments/make_figures/`.
+SVG files go to `outputs/figures/` inside the repository (`OUT` in
+`experiments/make_figures/common.py`, which creates the folder); the
+`.npy`/`.npz` files stay in `experiments/make_figures/`.
 
 \*Times measured on a shared two-core computer (CPU only, Python 3.11,
 PyTorch 2.14), including start-up, with exactly the arguments shown. The same
@@ -258,10 +277,12 @@ measured, because the database could not be downloaded here; all seven
 scripts were checked to run to completion on a stand-in file with the same
 columns and size.
 
-**`deck.js`** (not run for this guide) builds an editable PowerPoint of the
-figures with the Node.js package `pptxgenjs`. As written, it reads PNG copies
-of the figures from `/tmp/figs/<name>.png` (no script in this repository
-creates them) and writes `/tmp/ppt/PARL-ID_figures.pptx`.
+**`deck.js`** builds an editable PowerPoint of the figures with the Node.js
+package `pptxgenjs` (`npm install pptxgenjs`, then
+`node experiments/make_figures/deck.js`). It reads PNG copies of the figures
+from `outputs/figures/<name>.png` and writes
+`outputs/PARL-ID_figures.pptx`, creating `outputs/` if needed. No script in
+this repository makes the PNG copies; convert the SVG files yourself.
 
 ---
 
@@ -478,6 +499,7 @@ below; this guide adds no further bibliographic details.
 
 | Version | Date | Notes |
 |---|---|---|
+| Unreleased | 30 Sep 2026 | Fixes: figure SVGs and the PowerPoint deck now written inside the repository (`outputs/`); PyTorch minimum raised to 2.3 |
 | Unreleased | 30 Sep 2026 | Documentation only: README rewritten, CHANGELOG added, CITATION.cff corrected |
 | Initial code (no version tag; `parl_id.__version__` is `0.1.0`) | 25 Jul 2026 | First public code |
 
