@@ -25,7 +25,8 @@ C = {'blue': '#0072B2', 'orange': '#E69F00', 'green': '#009E73',
 from pathlib import Path
 _HERE = Path(__file__).resolve().parent
 CSV = str(_HERE.parent / 'augmented_reshaped_dataset.csv')   # the released FEM database
-OUT = str(_HERE.parent.parent.parent / 'latex') + '/'        # SVGs written into latex/
+OUT = str(_HERE.parent.parent / 'outputs' / 'figures') + '/'  # SVGs written into outputs/figures/
+Path(OUT).mkdir(parents=True, exist_ok=True)
 
 
 def load():
