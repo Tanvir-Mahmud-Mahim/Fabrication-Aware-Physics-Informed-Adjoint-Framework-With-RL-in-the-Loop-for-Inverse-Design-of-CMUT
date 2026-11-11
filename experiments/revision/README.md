@@ -12,7 +12,8 @@ python e3b_policy.py 0 40; python e3c_eval.py
 python e4_photonic.py data 0 40; python e4_photonic.py data 1 40; python e4_photonic.py grad 40
 python e4_photonic.py fit; python e4_photonic.py opt nominal 40; python e4_photonic.py opt triple 40
 python e4_photonic.py opt cvar 40; python e4_photonic.py yield 40
-python make_revision_figures.py
+python make_revision_figures.py   # result figures (Figs. 3-7)
+python make_diagrams.py           # schematic figures (Figs. 1-2)
 ```
 
 `results/` holds the cached JSON outputs used by the figures and tables.
