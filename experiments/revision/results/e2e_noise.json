@@ -1,0 +1,32 @@
+{
+ "K120|mean-variance": {
+  "rel_std_err": 0.06910214324634113,
+  "spearman_vs_ref": 0.9516796440489432,
+  "tail_samples": 120
+ },
+ "K120|CVaR_5%": {
+  "rel_std_err": 0.10113296349452568,
+  "spearman_vs_ref": 0.9183492769744162,
+  "tail_samples": 6
+ },
+ "K120|CVaR_10%": {
+  "rel_std_err": 0.08381692274551078,
+  "spearman_vs_ref": 0.9364315906562846,
+  "tail_samples": 12
+ },
+ "K400|mean-variance": {
+  "rel_std_err": 0.03778561207905917,
+  "spearman_vs_ref": 0.9805116796440488,
+  "tail_samples": 400
+ },
+ "K400|CVaR_5%": {
+  "rel_std_err": 0.05587560719355205,
+  "spearman_vs_ref": 0.9602002224694104,
+  "tail_samples": 20
+ },
+ "K400|CVaR_10%": {
+  "rel_std_err": 0.04649035163886441,
+  "spearman_vs_ref": 0.9722469410456063,
+  "tail_samples": 40
+ }
+}
