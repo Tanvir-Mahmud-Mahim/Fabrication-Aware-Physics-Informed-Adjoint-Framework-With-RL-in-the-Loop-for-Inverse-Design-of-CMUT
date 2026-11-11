@@ -54,8 +54,9 @@ Agents for `e3_rl.py`: `sac_gcn_per`, `sac_gcn_uniform`, `sac_mlp_per`, `ppo_gcn
 
 * `parl_id/` and `experiments/run_*.py`: PyTorch modules of the original formulation
   (field PINN, neural adjoint, GCN-SAC/PPO). They were not used for the revised results.
-* `experiments/make_figures/` (except `figB.py`): scripts of the original submission. The
-  results they produce were withdrawn in the revision and are kept only for transparency.
+* `experiments/make_figures/`: `figB.py` (FDFD field and adjoint check) and its style
+  helpers in `common.py`. The figure scripts of the original submission were removed
+  because their results were withdrawn in the revision.
 
 ## License and citation
 
