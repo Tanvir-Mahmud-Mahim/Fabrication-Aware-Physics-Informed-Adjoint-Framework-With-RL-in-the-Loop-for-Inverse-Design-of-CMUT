@@ -84,7 +84,7 @@ fig, ax = plt.subplots(1, 2, figsize=(7.1, 2.7))
 im0 = ax[0].contourf(xx * 33, yg * 33, W, 28, cmap='viridis')
 ax[0].contour(xx * 33, yg * 33, W, 6, colors='white', linewidths=0.35, alpha=0.6)
 cb0 = plt.colorbar(im0, ax=ax[0], shrink=0.92, pad=0.02)
-cb0.set_label('W(x, y) [$\\mu$m]', fontsize=7.5); cb0.ax.tick_params(labelsize=6.5)
+cb0.set_label('W(x, y) [$\\mu$m]', fontsize=7.5); cb0.ax.tick_params(labelsize=7.5)
 ax[0].set_xlabel('x [$\\mu$m]'); ax[0].set_ylabel('y [$\\mu$m]')
 ax[0].set_title('(a)  CMUT membrane deflection'); ax[0].grid(False)
 ann_box(ax[0], 'clamped BCs by construction\n$W = \\phi^2 \\mathcal{N}$, peak = %.3f $\\mu$m' % peak, (0.03, 0.97))
@@ -93,13 +93,13 @@ im1 = ax[1].imshow(fld, cmap='RdBu_r', vmin=-1, vmax=1, aspect='auto',
                    extent=[x_um[0], x_um[-1], y_um[0], y_um[-1]], origin='lower')
 ax[1].contour(x_um, y_um, eps_i, levels=[6], colors='k', linewidths=0.8)
 ax[1].annotate('mode source', xy=(18 * dl * 1e6, yc * dl * 1e6), xytext=(8, 26),
-               textcoords='offset points', fontsize=6.8,
+               textcoords='offset points', fontsize=7.5,
                arrowprops=dict(arrowstyle='->', lw=0.7))
 cb1 = plt.colorbar(im1, ax=ax[1], shrink=0.92, pad=0.02)
-cb1.set_label('Im($E_z$) (norm.)', fontsize=7.5); cb1.ax.tick_params(labelsize=6.5)
+cb1.set_label('Im($E_z$) (norm.)', fontsize=7.5); cb1.ax.tick_params(labelsize=7.5)
 ax[1].set_xlabel('x [$\\mu$m]'); ax[1].set_ylabel('y [$\\mu$m]')
 ax[1].set_title('(b)  FDFD waveguide field'); ax[1].grid(False)
-ann_box(ax[1], '$\\lambda$ = 1.55 $\\mu$m, Si core outlined;\nabsorbing layers cropped', (0.03, 0.97), fontsize=6.6)
+ann_box(ax[1], '$\\lambda$ = 1.55 $\\mu$m, Si core outlined;\nabsorbing layers cropped', (0.03, 0.97), fontsize=7.5)
 fig.tight_layout(); fig.savefig(OUT + 'Fig_field.svg', bbox_inches='tight')
 print('Fig_field done | guide/interior-max ratio:', abs(ez[yc, 60]) / norm)
 
@@ -129,11 +129,11 @@ im0 = ax[0].imshow(g_i, cmap='RdBu_r', norm=mcolors.TwoSlopeNorm(0, -vm, vm),
                    aspect='auto', extent=[x_um[0], x_um[-1], y_um[0], y_um[-1]],
                    origin='lower')
 cb0 = plt.colorbar(im0, ax=ax[0], shrink=0.92, pad=0.02)
-cb0.set_label('$dJ/d\\varepsilon$', fontsize=7.5); cb0.ax.tick_params(labelsize=6.5)
+cb0.set_label('$dJ/d\\varepsilon$', fontsize=7.5); cb0.ax.tick_params(labelsize=7.5)
 ax[0].plot(probe[1] * dl * 1e6, probe[0] * dl * 1e6, marker='*', ms=10,
            color='#FFD700', mec='k', mew=0.5)
 ax[0].annotate('probe $J = |E_z|^2$', xy=(probe[1] * dl * 1e6, probe[0] * dl * 1e6),
-               xytext=(-62, 16), textcoords='offset points', fontsize=7,
+               xytext=(-62, 16), textcoords='offset points', fontsize=7.5,
                arrowprops=dict(arrowstyle='-', lw=0.6))
 ax[0].set_xlabel('x [$\\mu$m]'); ax[0].set_ylabel('y [$\\mu$m]')
 ax[0].set_title('(a)  Exact discrete adjoint gradient'); ax[0].grid(False)

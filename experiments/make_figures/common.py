@@ -9,11 +9,11 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 plt.rcParams.update({
-    'svg.fonttype': 'none', 'font.size': 8.5, 'font.family': 'sans-serif',
+    'svg.fonttype': 'none', 'font.size': 9, 'font.family': 'sans-serif',
     'axes.linewidth': 0.7, 'axes.spines.top': False, 'axes.spines.right': False,
     'axes.grid': True, 'grid.alpha': 0.25, 'grid.linewidth': 0.5,
     'axes.titlesize': 9, 'axes.titleweight': 'bold', 'axes.titlelocation': 'left',
-    'legend.frameon': False, 'legend.fontsize': 7.5,
+    'legend.frameon': False, 'legend.fontsize': 8,
     'lines.linewidth': 1.5, 'figure.dpi': 110,
     'xtick.major.size': 2.5, 'ytick.major.size': 2.5,
 })
